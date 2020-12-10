@@ -4,6 +4,7 @@ import Login from '../components/Login/Login'
 import Register from '../components/Login/Register'
 import Index from '../components/AppIndex/Index'
 import Home from '../components/Home'
+import Create from '../components/AppIndex/Create'
 
 Vue.use(Router)
 
@@ -20,8 +21,11 @@ export default new Router({
           path: '/index',
           name: 'Index',
           component: Index
-          // meta: {
-          // }
+        },
+        {
+          path: '/create',
+          name: 'Create',
+          component: Create
         }
       ]
 

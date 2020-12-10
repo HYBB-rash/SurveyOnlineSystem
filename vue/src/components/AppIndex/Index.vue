@@ -11,7 +11,6 @@
         <survey-card v-bind:card="card"></survey-card>
       </el-row>
     </el-main>
-
   </el-container>
 </template>
 

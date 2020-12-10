@@ -1,7 +1,6 @@
 <template>
   <div>
     <nav-menu></nav-menu>
-<!--    <left-menu></left-menu>-->
     <router-view></router-view>
   </div>
 
