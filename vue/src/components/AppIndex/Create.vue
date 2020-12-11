@@ -17,17 +17,7 @@ export default {
   components: {CreateLeftMenu, Survey},
   data () {
     return {
-      q: {
-        question: 'ddd',
-        type: 0,
-        flag: true,
-        context: '',
-        rate: null,
-        choices: [
-          {value: 'ddd', ans: false},
-          {value: 'ddd', ans: false}
-        ]
-      }
+
     }
   },
   methods: {
@@ -38,13 +28,25 @@ export default {
       //   type: 'pushQuestion',
       //   class: type
       // })
-      this.$set(this.q, 'type', type)
-      console.log(this.q.type)
+      const ques = {
+        key: this.$store.state.forms.length,
+        type: type,
+        question: {
+          title: 'ddd',
+          flag: true,
+          context: '',
+          rate: null,
+          choices: [
+            {value: 'ddd', ans: false},
+            {value: 'ddd', ans: false}
+          ]
+        }
+      }
       this.$store.commit({
         type: 'pushQuestion',
-        q: this.q
+        q: ques
       })
-      console.log(this.q.type)
+      // console.log(this.$store.state.forms[5].type)
     }
   }
 }

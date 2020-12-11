@@ -14,10 +14,24 @@
       <!-- 间隔 -->
       <el-row><div class="grid-content"></div></el-row>
       <!-- 具体的问题渲染 -->
-      <el-row>
-        <question
-          v-for="(form, index) in forms" :key="index"
-          v-bind:dynamic-validate-form="form" class="questionCard"></question>
+      <el-row v-for="form in this.$store.state.forms" :key="form.key">
+<!--        <question-->
+<!--          v-for="(form, index) in forms" :key="index"-->
+<!--          v-bind:dynamic-validate-form="form" class="questionCard"></question>-->
+        <simple-question v-if="form.type === 0" class="questionCard"
+                         :dynamic-validate-form="form.question"></simple-question>
+        <multi-question v-else-if="form.type === 1" class="questionCard"
+                        :dynamic-validate-form="form.question"></multi-question>
+        <comment-question v-else-if="form.type === 2" class="questionCard"
+                          :dynamic-validate-form="form.question"></comment-question>
+        <rate-question v-else-if="form.type === 3" class="questionCard"
+                       :dynamic-validate-form="form.question"></rate-question>
+      </el-row>
+      <el-row v-for="(form, index) in this.$store.state.forms" :key="index">
+        <span>{{form.type}}</span>
+        <span>{{form.question.title}}</span>
+        <span>{{form.question.flag}}</span>
+        <span>{{form.question.choices[0].value}}</span>
       </el-row>
 <!--      <el-button @click="demo(forms)">demo</el-button>-->
     </el-card>
@@ -25,11 +39,13 @@
 </template>
 
 <script>
-import Question from './Question'
-
+import SimpleQuestion from './Question/SimpleQuestion'
+import MultiQuestion from './Question/MultiQuestion'
+import CommentQuestion from './Question/CommentQuestion'
+import RateQuestion from './Question/RateQuestion'
 export default {
   name: 'Survey',
-  components: {Question},
+  components: {SimpleQuestion, MultiQuestion, CommentQuestion, RateQuestion},
   data () {
     return {
       surveyTitle: this.$store.state.surveyTitle,
