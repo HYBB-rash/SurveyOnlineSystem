@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-aside>
-      <create-left-menu @onEmitType="onEmitType"></create-left-menu>
+      <create-left-menu @onEmitType="onEmitType" ref="createLeftMenu"></create-left-menu>
     </el-aside>
     <el-main>
       <survey></survey>
@@ -17,17 +17,7 @@ export default {
   components: {CreateLeftMenu, Survey},
   data () {
     return {
-      q: {
-        question: 'ddd',
-        type: 0,
-        flag: true,
-        context: '',
-        rate: null,
-        choices: [
-          {value: 'ddd', ans: false},
-          {value: 'ddd', ans: false}
-        ]
-      }
+      type: null
     }
   },
   methods: {
@@ -38,13 +28,25 @@ export default {
       //   type: 'pushQuestion',
       //   class: type
       // })
-      this.$set(this.q, 'type', type)
-      console.log(this.q.type)
+      const ques = {
+        key: Date.now(),
+        question: 'ddd',
+        type: 0,
+        flag: true,
+        context: '',
+        rate: null,
+        choices: [
+          {value: 'ddd', ans: false},
+          {value: 'ddd', ans: false}
+        ]
+      }
+      // this.$set(ques, 'type', type)
+      // console.log(this.q.type)
       this.$store.commit({
         type: 'pushQuestion',
-        q: this.q
+        q: ques
       })
-      console.log(this.q.type)
+      // console.log(this.q.type)
     }
   }
 }

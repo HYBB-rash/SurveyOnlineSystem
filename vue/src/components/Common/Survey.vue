@@ -16,8 +16,13 @@
       <!-- 具体的问题渲染 -->
       <el-row>
         <question
-          v-for="(form, index) in forms" :key="index"
+          v-for="form in forms" :key="form.key"
           v-bind:dynamic-validate-form="form" class="questionCard"></question>
+      </el-row>
+      <el-row v-for="(form, index) in forms" :key="index">
+        <span>{{form.key}}</span>
+        <span>{{form.flag}}</span>
+        <span>{{form.type}}</span>
       </el-row>
 <!--      <el-button @click="demo(forms)">demo</el-button>-->
     </el-card>

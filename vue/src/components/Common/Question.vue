@@ -41,14 +41,14 @@
         <el-form-item v-if="dynamicValidateForm.type === 0">
           <el-radio-group>
             <el-radio v-for="choice in dynamicValidateForm.choices" v-bind:label="choice.value"
-                      :key="choice" style="display: block; margin: 10px">
+                      :key="choice.key" style="display: block; margin: 10px">
             </el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item v-else-if="dynamicValidateForm.type === 1">
           <el-checkbox-group v-model="dynamicValidateForm.choices">
-            <div v-for="(item, index) in dynamicValidateForm.choices" :key="index" >
-              <el-checkbox style="display: block;" disabled
+            <div v-for="item in dynamicValidateForm.choices" :key="item.key" >
+              <el-checkbox style="display: block;"
                            name="type">{{item.value}}</el-checkbox>
             </div>
           </el-checkbox-group>
