@@ -60,11 +60,23 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    pushQuestion (state, playload) {
-      state.forms.push(playload.q)
+    pushQuestion (state, playLoad) {
+      state.forms.push(playLoad.q)
     },
-    addQuestion (state, playload) {
-      state.forms.push(playload.forms)
+    addQuestion (state, playLoad) {
+      state.forms.push(playLoad.forms)
+    },
+    removeQuestion (state, playLoad) {
+      let index = -1
+      for (let i = 0; i < state.forms.length; i++) {
+        if (state.forms[i].key === playLoad.key) {
+          index = i
+          break
+        }
+      }
+      if (playLoad.index !== -1) {
+        state.forms.splice(index, 1)
+      }
     }
   }
 })

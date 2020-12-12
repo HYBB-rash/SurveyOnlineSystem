@@ -2,8 +2,15 @@
   <el-card>
     <!-- 问题编辑时应用的表单 -->
     <el-form v-if="dynamicValidateForm.flag" label-width="100px">
+      <el-row>
+        <div style="text-align: right">
+          <i class="el-icon-remove-outline"
+             @click="removeQuestion(dynamicValidateForm.key)"
+             style="right: auto; color: #909399"></i>
+        </div>
+      </el-row>
       <!-- 显示选择的题目类型 -->
-      <el-row style="text-align: center; margin: 25px">
+      <el-row style="text-align: center; margin: 5px">
         <el-row style="margin: 25px">
           <h3 v-if="dynamicValidateForm.type == 0"><span>单选题</span></h3>
           <h3 v-else-if="dynamicValidateForm.type == 1"><span>多选题</span></h3>
@@ -88,6 +95,12 @@ export default {
     }
   },
   methods: {
+    removeQuestion (key) {
+      this.$store.commit({
+        type: 'removeQuestion',
+        key: key
+      })
+    },
     submitForm (formName) {
       this.$refs[formName].validate((valid) => {
         console.log(this.dynamicValidateForm.choices[4].value)

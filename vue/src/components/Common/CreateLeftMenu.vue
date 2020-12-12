@@ -1,6 +1,7 @@
 <template>
   <div>
 <!--    <el-button class="create-button" type="primary" @click="open" round>创建问卷</el-button>-->
+
     <el-menu
       collapse-transition
       class="choices"
@@ -8,6 +9,12 @@
       @select="handleSelect"
       active-text-color="red"
       style="box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1)">
+      <el-menu-item index="10">
+        <el-button type="text" @click="open">
+          <i class="el-icon-success" style="color: #67C23A;"></i>
+          <span>确认问卷制作完成</span>
+        </el-button>
+      </el-menu-item>
       <el-menu-item index="0">
         <i class="el-icon-question"></i>
         <span slot="title">单选题</span>
@@ -38,21 +45,26 @@ export default {
   },
   methods: {
     handleSelect (key) {
-      this.$emit('onEmitType', key)
+      if (Number(key) !== 10) {
+        this.$emit('onEmitType', key)
+      } else {
+        console.log('nimasile')
+      }
     },
     open () {
-      this.$prompt('请输入问卷标题', '提示', {
+      this.$confirm('是否确认提交该问卷', '提示', {
         confirmButtonText: '确定',
-        cancelButtonText: '取消'
-      }).then(({ value }) => {
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
         this.$message({
           type: 'success',
-          message: '？？？'
+          message: '提交成功'
         })
       }).catch(() => {
         this.$message({
           type: 'info',
-          message: '取消输入'
+          message: '请继续修改您的问卷'
         })
       })
     }

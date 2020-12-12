@@ -16,9 +16,15 @@
         <el-row><div class="grid-content"></div></el-row>
         <!-- 具体的问题渲染 -->
         <el-row>
-          <question
-            v-for="form in forms" :key="form.key"
-            v-bind:dynamic-validate-form="form" class="questionCard"></question>
+          <transition-group name="el-fade-in">
+            <question
+              v-for="form in forms" :key="form.key"
+              v-bind:dynamic-validate-form="form" class="questionCard"></question>
+
+            <!--            <transition v-for="form in forms" :key="form.key" name="el-fade-in">-->
+<!--              <question v-bind:dynamic-validate-form="form" class="questionCard"></question>-->
+<!--            </transition>-->
+          </transition-group>
         </el-row>
         <!--      <el-button @click="demo(forms)">demo</el-button>-->
       </el-card>
