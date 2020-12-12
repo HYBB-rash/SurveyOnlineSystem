@@ -5,6 +5,7 @@ import Register from '../components/Login/Register'
 import Index from '../components/AppIndex/Index'
 import Home from '../components/Home'
 import Create from '../components/AppIndex/Create'
+import Answer from '../components/AppIndex/Answer'
 
 Vue.use(Router)
 
@@ -39,6 +40,11 @@ export default new Router({
       path: '/register',
       name: 'Register',
       component: Register
+    },
+    {
+      path: '/ans/:id',
+      name: 'Answer',
+      component: Answer
     }
   ]
 })

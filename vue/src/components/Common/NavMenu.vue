@@ -25,8 +25,8 @@ export default {
   data () {
     return {
       navList: [
-        {name: '/index', navItem: '首页'},
-        {name: '/survey', navItem: '我的问卷'},
+        {name: '/login', navItem: '首页'},
+        {name: '/index', navItem: '我的问卷'},
         {name: '/admin', navItem: '个人中心'}
       ]
     }

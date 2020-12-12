@@ -17,10 +17,11 @@
         <!-- 具体的问题渲染 -->
         <el-row>
           <transition-group name="el-fade-in">
-            <question
-              v-for="form in forms" :key="form.key"
-              v-bind:dynamic-validate-form="form" class="questionCard"></question>
-
+            <question v-for="form in forms"
+                      v-bind:dynamic-validate-form="form"
+                      :key="form.key"
+                      class="questionCard"
+                      v-bind:flag="flag"></question>
             <!--            <transition v-for="form in forms" :key="form.key" name="el-fade-in">-->
 <!--              <question v-bind:dynamic-validate-form="form" class="questionCard"></question>-->
 <!--            </transition>-->
@@ -38,11 +39,12 @@ import Question from './Question'
 export default {
   name: 'Survey',
   components: {Question},
+  props: ['surveyTitle', 'instruction', 'forms', 'flag'],
   data () {
     return {
-      surveyTitle: this.$store.state.surveyTitle,
-      instruction: this.$store.state.instruction,
-      forms: this.$store.state.forms
+      // surveyTitle: this.$store.state.create.surveyTitle,
+      // instruction: this.$store.state.create.instruction,
+      // forms: this.$store.state.create.forms
     }
   }
 }

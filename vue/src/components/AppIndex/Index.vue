@@ -7,6 +7,7 @@
       <el-row>
         <h3>问卷列表</h3>
       </el-row>
+      <!-- 渲染已经存在的了的问卷的信息 -->
       <el-row v-for="card in cards" :key="card">
         <survey-card v-bind:card="card"></survey-card>
       </el-row>
@@ -23,30 +24,7 @@ export default {
   components: {NavMenu, LeftMenu, SurveyCard},
   data () {
     return {
-      cards: [
-        {
-          id: '456782143',
-          title: '我的一个测试问卷',
-          status: 0,
-          date: '2011-11-20',
-          cnt: 10
-        },
-        {
-          id: '456723143',
-          title: '我的一个测试问卷',
-          status: 1,
-          date: '2011-11-22',
-          cnt: 100
-        },
-        {
-          id: '456723143',
-          title: '我的一个测试问卷',
-          status: -1,
-          date: '2011-11-22',
-          cnt: 100
-        }
-      ],
-      show: 1
+      cards: this.$store.state.survey.surveyMessage
     }
   },
   methods: {
