@@ -4,18 +4,12 @@
     <el-form v-if="dynamicValidateForm.flag" label-width="100px">
       <!-- 显示选择的题目类型 -->
       <el-row style="text-align: center; margin: 25px">
-        <h3 v-if="dynamicValidateForm.type === 0" :key="dynamicValidateForm.key">
-          <span>单选题</span>
-        </h3>
-        <h3 v-else-if="dynamicValidateForm.type === 1" :key="dynamicValidateForm.key">
-          <span >多选题</span>
-        </h3>
-        <h3 v-else-if="dynamicValidateForm.type === 2" :key="dynamicValidateForm.key">
-          <span>评价题</span>
-        </h3>
-        <h3 v-else-if="dynamicValidateForm.type === 3" :key="dynamicValidateForm.key">
-          <span>评分题</span>
-        </h3>
+        <el-row style="margin: 25px">
+          <h3 v-if="dynamicValidateForm.type == 0"><span>单选题</span></h3>
+          <h3 v-else-if="dynamicValidateForm.type == 1"><span>多选题</span></h3>
+          <h3 v-else-if="dynamicValidateForm.type == 2"><span>评价题</span></h3>
+          <h3 v-else-if="dynamicValidateForm.type == 3"><span>评分题</span></h3>
+        </el-row>
       </el-row>
       <!-- 问卷标题 -->
       <el-form-item prop="" label="问题">
@@ -23,7 +17,7 @@
       </el-form-item>
       <!-- 当选择的题型为选择题类型时，显示每个需要显示的选项 -->
       <el-form-item v-for="(choice, index) in dynamicValidateForm.choices"
-                    v-if="dynamicValidateForm.type === 0 || dynamicValidateForm.type === 1"
+                    v-if="dynamicValidateForm.type == 0 || dynamicValidateForm.type == 1"
                     :label="'选项' + (index + 1)"
                     :key="choice.key"
                     :prop="'choices.' + index + '.value'">
@@ -44,14 +38,14 @@
       <el-row><div class="grid-content"></div></el-row>
       <!-- 根据题目类型分类渲染不同的问题选项 -->
       <el-row style="margin-top: 5%; margin-left: 5%;">
-        <el-form-item v-if="dynamicValidateForm.type === 0">
+        <el-form-item v-if="dynamicValidateForm.type == 0">
           <el-radio-group>
             <el-radio v-for="choice in dynamicValidateForm.choices" v-bind:label="choice.value"
                       :key="choice.key" style="display: block; margin: 10px">
             </el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item v-else-if="dynamicValidateForm.type === 1">
+        <el-form-item v-else-if="dynamicValidateForm.type == 1">
           <el-checkbox-group v-model="dynamicValidateForm.choices">
             <div v-for="item in dynamicValidateForm.choices" :key="item.key" >
               <el-checkbox style="display: block;"
@@ -59,13 +53,13 @@
             </div>
           </el-checkbox-group>
         </el-form-item>
-        <el-form-item v-else-if="dynamicValidateForm.type === 2">
+        <el-form-item v-else-if="dynamicValidateForm.type == 2">
           <el-input type="textarea" :autosize="{ minRows: 10, maxRows: 40}"
                     placeholder="请输入你的答案" v-model="dynamicValidateForm.context">
           </el-input>
         </el-form-item>
-        <el-form-item v-else-if="dynamicValidateForm.type === 3">
-          <el-rate v-model="dynamicValidateForm.rate" v-if="dynamicValidateForm.type === 3"
+        <el-form-item v-else-if="dynamicValidateForm.type == 3">
+          <el-rate v-model="dynamicValidateForm.rate"
                    :icon-classes="['icon-rate-face-1', 'icon-rate-face-2', 'icon-rate-face-3']"
                    void-icon-class="icon-rate-face-off"
                    :colors="['#99A9BF', '#F7BA2A', '#FF9900']">
@@ -81,9 +75,6 @@
         <span v-else @click="trans">编辑</span>
       </el-button>
     </div>
-    <el-row v-for="value in dynamicValidateForm" :key="value">
-      <div>{{value}}</div>
-    </el-row>
   </el-card>
 </template>
 

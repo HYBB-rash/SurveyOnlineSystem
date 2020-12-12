@@ -20,7 +20,7 @@
         <i class="el-icon-star-on"></i>
         <span slot="title">评价题</span>
       </el-menu-item>
-      <el-menu-item index="2">
+      <el-menu-item index="3">
         <i class="el-icon-s-data"></i>
         <span slot="title">评分题</span>
       </el-menu-item>
