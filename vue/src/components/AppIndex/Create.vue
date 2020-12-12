@@ -31,13 +31,13 @@ export default {
       const ques = {
         key: Date.now(),
         question: 'ddd',
-        type: 0,
+        type: type,
         flag: true,
         context: '',
         rate: null,
         choices: [
-          {value: 'ddd', ans: false},
-          {value: 'ddd', ans: false}
+          {value: 'ddd', key: Date.now()},
+          {value: 'ddd', key: Date.now() + 1}
         ]
       }
       // this.$set(ques, 'type', type)

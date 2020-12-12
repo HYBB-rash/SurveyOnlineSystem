@@ -1,16 +1,22 @@
 <template>
   <el-card>
     <!-- 问题编辑时应用的表单 -->
-    <el-form v-if="dynamicValidateForm.flag"
-             :model="dynamicValidateForm"
-             ref="dynamicValidateForm" label-width="100px">
+    <el-form v-if="dynamicValidateForm.flag" label-width="100px">
       <!-- 显示选择的题目类型 -->
-      <div style="text-align: center; margin: 25px">
-        <span v-if="dynamicValidateForm.type === 0">单选题</span>
-        <span v-if="dynamicValidateForm.type === 1">多选题</span>
-        <span v-if="dynamicValidateForm.type === 2">评价题</span>
-        <span v-if="dynamicValidateForm.type === 3">评分题</span>
-      </div>
+      <el-row style="text-align: center; margin: 25px">
+        <h3 v-if="dynamicValidateForm.type === 0" :key="dynamicValidateForm.key">
+          <span>单选题</span>
+        </h3>
+        <h3 v-else-if="dynamicValidateForm.type === 1" :key="dynamicValidateForm.key">
+          <span >多选题</span>
+        </h3>
+        <h3 v-else-if="dynamicValidateForm.type === 2" :key="dynamicValidateForm.key">
+          <span>评价题</span>
+        </h3>
+        <h3 v-else-if="dynamicValidateForm.type === 3" :key="dynamicValidateForm.key">
+          <span>评分题</span>
+        </h3>
+      </el-row>
       <!-- 问卷标题 -->
       <el-form-item prop="" label="问题">
         <el-input v-model="dynamicValidateForm.question" style="width: 80%;"></el-input>
@@ -75,6 +81,9 @@
         <span v-else @click="trans">编辑</span>
       </el-button>
     </div>
+    <el-row v-for="value in dynamicValidateForm" :key="value">
+      <div>{{value}}</div>
+    </el-row>
   </el-card>
 </template>
 
