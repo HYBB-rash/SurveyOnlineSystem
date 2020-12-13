@@ -9,6 +9,11 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+var axios = require('axios')
+axios.defaults.baseURL = 'http://localhost:8433/api'
+
+Vue.prototype.$axios = axios
+Vue.config.productionTip = false
 Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({

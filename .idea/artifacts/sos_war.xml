@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sos:war">
+    <output-path>$PROJECT_DIR$/sos/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>sos</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="wj-0.0.1-SNAPSHOT.war">
+      <element id="artifact" artifact-name="sos:war exploded" />
+    </root>
+  </artifact>
+</component>

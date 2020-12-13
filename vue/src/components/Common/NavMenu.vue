@@ -27,7 +27,7 @@ export default {
       navList: [
         {name: '/login', navItem: '首页'},
         {name: '/index', navItem: '我的问卷'},
-        {name: '/admin', navItem: '个人中心'}
+        {name: '/profile', navItem: '个人中心'}
       ]
     }
   }

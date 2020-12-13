@@ -42,6 +42,7 @@ export default {
         username: '',
         password: ''
       },
+      responseResult: [],
       rules: {
         username: [{validator: checkUsername, trigger: 'blur'}],
         password: [{validator: checkPassword, trigger: 'blur'}]
@@ -50,11 +51,19 @@ export default {
   },
   methods: {
     login () {
-      if (this.loginForm.username === 'admin') {
-        if (this.loginForm.password === '123') {
-          this.$router.replace({path: '/'})
-        }
-      }
+      this.$axios
+        .post('/login', {
+          username: this.loginForm.username,
+          password: this.loginForm.password
+        })
+        .then(successResponse => {
+          if (successResponse.data.code === 200) {
+            this.$router.replace({path: '/index'})
+          }
+        })
+        .catch(failResponse => {
+
+        })
     },
     register () {
       this.$router.replace({path: '/register'})
@@ -65,8 +74,7 @@ export default {
 
 <style scoped>
   #paper {
-    background:url("../../assets/eva1.jpg") repeat;
-    background-position: center;
+    background: url("../../assets/eva1.jpg") repeat center;
     height: 100%;
     width: 100%;
     background-size: cover;

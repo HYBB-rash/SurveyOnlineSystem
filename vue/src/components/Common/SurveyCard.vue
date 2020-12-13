@@ -1,8 +1,6 @@
 <template>
   <div>
-    <el-card class="box-card" shadow="hover"
-             style="box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-             margin: 15px">
+    <el-card class="box-card" shadow="hover" style="margin: 15px">
       <div slot="header" class="clearfix">
         <el-row>
           <!-- 问卷标题 -->

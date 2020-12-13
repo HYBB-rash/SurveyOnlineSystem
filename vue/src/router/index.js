@@ -6,6 +6,7 @@ import Index from '../components/AppIndex/Index'
 import Home from '../components/Home'
 import Create from '../components/AppIndex/Create'
 import Answer from '../components/AppIndex/Answer'
+import Profile from '../components/AppIndex/Profile'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
           path: '/create',
           name: 'Create',
           component: Create
+        },
+        {
+          path: '/profile',
+          name: 'Profile',
+          component: Profile
         }
       ]
 
