@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface SurveyDao extends JpaRepository<Survey, Integer> {
 
     Survey findByUserId(int userId);
-
+    Survey findById(int id);
 }
