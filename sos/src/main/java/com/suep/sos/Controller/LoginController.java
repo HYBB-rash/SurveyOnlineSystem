@@ -3,13 +3,13 @@ package com.suep.sos.Controller;
 import com.suep.sos.Entity.User;
 import com.suep.sos.Result.Result;
 import com.suep.sos.Result.ResultFactory;
+import com.suep.sos.Service.Implementation.UserServiceImp;
 import com.suep.sos.Service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +35,8 @@ public class LoginController {
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
         try {
             subject.login(usernamePasswordToken);
-            return ResultFactory.buildSuccessResult(username);
+            int id = userService.getUserId(requestUser.getUsername());
+            return ResultFactory.buildSuccessResult(id);
         }catch (AuthenticationException e) {
             String message = "账号密码错误";
             return ResultFactory.buildFailResult(message);

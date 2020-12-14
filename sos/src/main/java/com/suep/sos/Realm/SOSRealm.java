@@ -1,7 +1,7 @@
 package com.suep.sos.Realm;
 
 import com.suep.sos.Entity.User;
-import com.suep.sos.Service.UserService;
+import com.suep.sos.Service.Implementation.UserServiceImp;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SOSRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImp userService;
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {

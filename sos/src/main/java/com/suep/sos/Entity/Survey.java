@@ -14,6 +14,7 @@ public class Survey {
     @Column(name = "id")
     int id;
 
+    @Column(name = "userid")
     int userId;
     String title;
     String instruction;

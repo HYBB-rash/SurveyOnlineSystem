@@ -1,6 +1,6 @@
 package com.suep.sos;
 
-import com.suep.sos.Service.UserService;
+import com.suep.sos.Service.Implementation.UserServiceImp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SosApplicationTests {
 
     @Autowired
-    UserService userService;
+    UserServiceImp userService;
 
     @Test
     void contextLoads() {

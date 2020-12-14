@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@txCloud.hy0430fb.club">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.20">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.19">
     <root id="1">
       <ServerVersion>8.0.22</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -893,15 +893,15 @@ SYSTEM_USER
       <Host>localhost</Host>
       <ObjectGrants>SHUTDOWN,SUPER
 BACKUP_ADMIN,CLONE_ADMIN,CONNECTION_ADMIN,PERSIST_RO_VARIABLES_ADMIN,SESSION_VARIABLES_ADMIN,SYSTEM_USER,SYSTEM_VARIABLES_ADMIN
-SELECT|performance_schema
-SELECT|mysql.user
+SELECT|performance_schema:null
+SELECT|mysql.user:null
 </ObjectGrants>
     </user>
     <user id="282" parent="1" name="mysql.sys">
       <Host>localhost</Host>
       <ObjectGrants>SYSTEM_USER
-TRIGGER|sys
-SELECT|sys.sys_config
+TRIGGER|sys:null
+SELECT|sys.sys_config:null
 </ObjectGrants>
     </user>
     <user id="283" parent="1" name="root">
