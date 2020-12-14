@@ -35,7 +35,7 @@ export default {
     handleSelect (key, keyPath) {
     },
     open () {
-      this.$prompt('请输入问卷标题', '提示', {
+      this.$prompt('请输入问卷标题', '创建问卷', {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(({ value }) => {

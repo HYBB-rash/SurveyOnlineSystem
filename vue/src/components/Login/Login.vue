@@ -39,6 +39,7 @@ export default {
     }
     return {
       loginForm: {
+        id: '',
         username: '',
         password: ''
       },
@@ -58,11 +59,15 @@ export default {
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
+            this.$store.commit({
+              type: 'setStatus',
+              id: Number(successResponse.data.result)
+            })
+            console.log(this.$store.state.user.id)
             this.$router.replace({path: '/index'})
           }
         })
         .catch(failResponse => {
-
         })
     },
     register () {
