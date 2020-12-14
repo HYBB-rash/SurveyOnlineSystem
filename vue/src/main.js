@@ -10,7 +10,7 @@ import store from './store'
 Vue.config.productionTip = false
 
 var axios = require('axios')
-axios.defaults.baseURL = 'http://localhost:8433/api'
+axios.defaults.baseURL = 'http://192.168.196.131:8433/api'
 
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false

@@ -8,11 +8,11 @@
             <span style="text-align: left" :key='card.title'>{{ card.title }}</span>
           </div></el-col>
           <!-- 间隔 -->
-          <el-col :span="9"><div class="grid-content"></div></el-col>
+          <el-col :span="7"><div class="grid-content"></div></el-col>
           <!-- 问卷的ID -->
           <el-col :span="3">
             <div class="grid-content" style="text-align: center" :key='card.id'>
-              <small>ID:{{ card.id }}</small>
+              <small>ID:{{ card.id + Date.now()}}</small>
             </div>
           </el-col>
           <!-- 当前的问卷发布状态 -->
@@ -20,19 +20,19 @@
             <div class="grid-content" style="text-align: center" :key='card.status'>
               <small v-if="card.status === 1" style="color: #409EFF">●已发布</small>
               <small v-else-if="card.status === 0" style="color: #F56C6C">●已结束</small>
-              <small v-else-if="card.status === -1" style="color: #909399">●已删除</small>
+              <small v-else-if="card.status === 2" style="color: #909399">●已删除</small>
             </div>
           </el-col>
           <!-- 参与问卷的人数 -->
           <el-col :span="2">
-            <div class="grid-content" style="text-align: center" :key='card.cnt'>
-              <small>答题卷:{{card.cnt}}</small>
+            <div class="grid-content" style="text-align: center" :key='card.count'>
+              <small>答题卷:{{card.count}}</small>
             </div>
           </el-col>
           <!-- 问卷的发布日期 -->
-          <el-col :span="2">
+          <el-col :span="4">
             <div class="grid-content" style="text-align: right" :key='card.date'>
-              <small>{{card.date}}</small>
+              <small>{{card.day}}</small>
             </div>
           </el-col>
         </el-row>
