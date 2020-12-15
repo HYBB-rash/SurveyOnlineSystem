@@ -46,7 +46,8 @@
           <el-col :span="8"><div class="grid-content"></div></el-col>
           <!-- 编辑按钮 -->
           <el-col :span="4"><div class="toRight">
-            <el-button style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)">
+            <el-button style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)"
+                       @click="edit(card.id)">
               <i class="el-icon-edit" style="color: #67C23A"></i>编辑问卷</el-button>
           </div></el-col>
           <!-- 发送问卷按钮 -->
@@ -77,6 +78,22 @@ export default {
   props: ['card'],
   data () {
     return {
+    }
+  },
+  methods: {
+    edit (id) {
+      this.$store.state.create.id = id
+      this.$axios
+        .post('/edit', {
+          id: id
+        })
+        .then(successResponse => {
+          this.$store.commit({
+            type: 'refreshEdit',
+            editForm: successResponse.data.result
+          })
+        })
+      this.$router.replace({path: '/create'})
     }
   }
 }

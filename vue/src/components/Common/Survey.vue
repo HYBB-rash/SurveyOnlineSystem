@@ -8,8 +8,18 @@
         <el-row><div class="grid-content"></div></el-row>
         <!-- 问卷的说明 -->
         <el-row><div>
-          <el-card style="margin-left: 5%; margin-right: 5%">
-            <small>{{instruction}}</small>
+          <el-card class="questionCard">
+            <el-input type="textarea" v-if="instructionSig"
+                      :autosize="{ minRows: 5, maxRows: 10}"
+                      placeholder="请输入问卷的说明信息" v-model="instruction">
+            </el-input>
+            <small v-else>{{instruction}}</small>
+            <div v-if="flag" style="text-align: right; width: 90%; margin-top: 10px">
+              <el-button>
+                <span v-if="instructionSig" @click="trans">确定</span>
+                <span v-else @click="trans">编辑</span>
+              </el-button>
+            </div>
           </el-card>
         </div></el-row>
         <!-- 间隔 -->
@@ -17,9 +27,9 @@
         <!-- 具体的问题渲染 -->
         <el-row>
           <transition-group name="el-fade-in">
-            <question v-for="form in forms"
+            <question v-for="(form, idx) in forms"
                       v-bind:dynamic-validate-form="form"
-                      :key="form.key"
+                      :key="Date.now() + idx"
                       class="questionCard"
                       v-bind:flag="flag"></question>
             <!--            <transition v-for="form in forms" :key="form.key" name="el-fade-in">-->
@@ -35,16 +45,33 @@
 
 <script>
 import Question from './Question'
+// import Instruction from './CreateInfo'
 
 export default {
   name: 'Survey',
   components: {Question},
-  props: ['surveyTitle', 'instruction', 'forms', 'flag'],
+  props: ['surveyTitle', 'forms', 'flag'],
   data () {
     return {
       // surveyTitle: this.$store.state.create.surveyTitle,
       // instruction: this.$store.state.create.instruction,
       // forms: this.$store.state.create.forms
+      instructionSig: true
+    }
+  },
+  methods: {
+    trans () {
+      this.instructionSig = !this.instructionSig
+    }
+  },
+  computed: {
+    instruction: {
+      get () {
+        return this.$store.state.create.instruction
+      },
+      set (value) {
+        this.$store.commit('refreshInstruction', value)
+      }
     }
   }
 }
