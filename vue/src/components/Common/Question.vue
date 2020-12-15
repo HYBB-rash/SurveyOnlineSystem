@@ -6,7 +6,7 @@
       <el-row>
         <div style="text-align: right">
           <i class="el-icon-remove-outline"
-             @click="removeQuestion(dynamicValidateForm.key)"
+             @click="removeQuestion(dynamicValidateForm.id)"
              style="right: auto; color: #909399"></i>
         </div>
       </el-row>
@@ -33,7 +33,7 @@
         <el-button @click.prevent="removeChoice(choice)">删除</el-button>
       </el-form-item>
       <!-- 编辑完后可以点击完成查看实际的显示效果 -->
-      <el-form-item v-if="dynamicValidateForm.type === 0 || dynamicValidateForm.type === 1">
+      <el-form-item v-if="Number(dynamicValidateForm.type) === 0 || Number(dynamicValidateForm.type) === 1">
         <el-button type="" @click="submitForm('dynamicValidateForm')">提交</el-button>
         <el-button @click="addChoice">新增选项</el-button>
         <el-button @click="resetForm('dynamicValidateForm')">重置</el-button>

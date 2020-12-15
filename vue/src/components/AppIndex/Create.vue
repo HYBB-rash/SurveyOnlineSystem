@@ -5,7 +5,6 @@
     </el-aside>
     <el-main>
       <survey v-bind:survey-title="this.$store.state.create.surveyTitle"
-              v-bind:instruction="this.$store.state.create.instruction"
               v-bind:flag="true"
               v-bind:forms="this.$store.state.create.forms"></survey>
     </el-main>
@@ -32,7 +31,7 @@ export default {
       //   class: type
       // })
       const ques = {
-        key: Date.now(),
+        id: null,
         question: 'ddd',
         type: type,
         ans: -1,
@@ -40,10 +39,7 @@ export default {
         context: '',
         rate: null,
         multi: [],
-        choices: [
-          {value: 'ddd', key: Date.now()},
-          {value: 'ddd', key: Date.now() + 1}
-        ]
+        choices: []
       }
       // this.$set(ques, 'type', type)
       // console.log(this.q.type)

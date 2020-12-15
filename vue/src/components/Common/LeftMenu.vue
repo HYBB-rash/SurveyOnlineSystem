@@ -39,10 +39,9 @@ export default {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(({ value }) => {
-        this.$message({
-          type: 'success',
-          message: '？？？'
-        })
+        this.$store.state.create.surveyTitle = value
+        console.log(this.$store.state.create.surveyTitle)
+        this.$router.replace({path: '/create'})
       }).catch(() => {
         this.$message({
           type: 'info',
