@@ -49,6 +49,16 @@ export default {
       })
       // console.log(this.q.type)
     }
+  },
+  computed: {
+    instruction: {
+      get () {
+        return this.$store.state.create.instruction
+      },
+      set (value) {
+        this.$store.commit('refreshInstruction', value)
+      }
+    }
   }
 }
 </script>
