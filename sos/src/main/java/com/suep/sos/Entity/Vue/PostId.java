@@ -1,4 +1,4 @@
-package com.suep.sos.Entity;
+package com.suep.sos.Entity.Vue;
 
 public class PostId {
 

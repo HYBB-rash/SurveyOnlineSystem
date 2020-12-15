@@ -23,15 +23,23 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", company='" + company + '\'' +
-                '}';
+        final StringBuilder builder = new StringBuilder("{");
+        builder.append("\"id\":")
+                .append(id);
+        builder.append(",\"userId\":")
+                .append(userId);
+        builder.append(",\"name\":\"")
+                .append(name).append('\"');
+        builder.append(",\"sex\":\"")
+                .append(sex).append('\"');
+        builder.append(",\"address\":\"")
+                .append(address).append('\"');
+        builder.append(",\"phone\":\"")
+                .append(phone).append('\"');
+        builder.append(",\"company\":\"")
+                .append(company).append('\"');
+        builder.append('}');
+        return builder.toString();
     }
 
     public int getId() {

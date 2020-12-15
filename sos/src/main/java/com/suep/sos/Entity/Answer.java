@@ -36,15 +36,23 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "Answer{" +
-                "id=" + id +
-                ", surveyId=" + surveyId +
-                ", detailId=" + detailId +
-                ", ans=" + ans +
-                ", multi='" + multi + '\'' +
-                ", context='" + context + '\'' +
-                ", rate=" + rate +
-                '}';
+        final StringBuilder builder = new StringBuilder("{");
+        builder.append("\"id\":")
+                .append(id);
+        builder.append(",\"surveyId\":")
+                .append(surveyId);
+        builder.append(",\"detailId\":")
+                .append(detailId);
+        builder.append(",\"ans\":")
+                .append(ans);
+        builder.append(",\"multi\":\"")
+                .append(multi).append('\"');
+        builder.append(",\"context\":\"")
+                .append(context).append('\"');
+        builder.append(",\"rate\":")
+                .append(rate);
+        builder.append('}');
+        return builder.toString();
     }
 
     public int getId() {
