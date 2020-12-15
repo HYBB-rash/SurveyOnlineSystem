@@ -9,6 +9,6 @@ public interface DetailDao extends JpaRepository<Detail, Integer> {
 
     // get
     List<Detail> findBySurveyId(Long surveyId);
-
+    Detail findById(Long id);
     // to
 }

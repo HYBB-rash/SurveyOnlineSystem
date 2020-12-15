@@ -1,12 +1,10 @@
 package com.suep.sos.Entity.Vue;
 
-import com.alibaba.fastjson.JSONObject;
-
-import java.util.Arrays;
 import java.util.List;
 
 public class VueSurvey {
 
+    private Long id;
     private Integer userId;
     private String surveyTitle;
     private String instruction;
@@ -15,7 +13,9 @@ public class VueSurvey {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder("{");
-        builder.append("\"userId\":")
+        builder.append("\"id\":")
+                .append(id);
+        builder.append(",\"userId\":")
                 .append(userId);
         builder.append(",\"surveyTitle\":\"")
                 .append(surveyTitle).append('\"');
@@ -25,6 +25,14 @@ public class VueSurvey {
                 .append(forms);
         builder.append('}');
         return builder.toString();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getUserId() {

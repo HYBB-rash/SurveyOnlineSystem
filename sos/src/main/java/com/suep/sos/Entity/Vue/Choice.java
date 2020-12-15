@@ -6,9 +6,11 @@ public class Choice {
 
     @Override
     public String toString() {
-        return "Choice{" +
-                "value='" + value + '\'' +
-                '}';
+        final StringBuilder builder = new StringBuilder("{");
+        builder.append("\"value\":\"")
+                .append(value).append('\"');
+        builder.append('}');
+        return builder.toString();
     }
 
     public String getValue() {

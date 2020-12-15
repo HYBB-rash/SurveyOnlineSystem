@@ -11,4 +11,6 @@ public interface SurveyDao extends JpaRepository<Survey, Integer> {
 
     List<SurveyInfo> findByUserId(int userId);
     SurveyEditBase findById(Long id);
+
+
 }

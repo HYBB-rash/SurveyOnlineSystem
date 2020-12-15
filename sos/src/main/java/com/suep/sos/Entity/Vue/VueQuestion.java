@@ -1,6 +1,5 @@
 package com.suep.sos.Entity.Vue;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class VueQuestion {
@@ -16,16 +15,25 @@ public class VueQuestion {
 
     @Override
     public String toString() {
-        return "VueQuestion{" +
-                "id=" + id +
-                ", question='" + question + '\'' +
-                ", type=" + type +
-                ", context='" + context + '\'' +
-                ", ans=" + ans +
-                ", multi=" + multi +
-                ", flag=" + flag +
-                ", choices=" + choices +
-                '}';
+        final StringBuilder builder = new StringBuilder("{");
+        builder.append("\"id\":")
+                .append(id);
+        builder.append(",\"question\":\"")
+                .append(question).append('\"');
+        builder.append(",\"type\":")
+                .append(type);
+        builder.append(",\"context\":\"")
+                .append(context).append('\"');
+        builder.append(",\"ans\":")
+                .append(ans);
+        builder.append(",\"multi\":")
+                .append(multi);
+        builder.append(",\"flag\":")
+                .append(flag);
+        builder.append(",\"choices\":")
+                .append(choices);
+        builder.append('}');
+        return builder.toString();
     }
 
     public Long getId() {

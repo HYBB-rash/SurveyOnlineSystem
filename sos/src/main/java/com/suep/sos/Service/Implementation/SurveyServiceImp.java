@@ -47,6 +47,7 @@ public class SurveyServiceImp implements SurveyService {
     private void storeDetail(VueQuestion question, Long surveyId) {
 
         Detail detail = new Detail();
+        detail.setId(question.getId());
         detail.setQuestion(question.getQuestion());
         detail.setSurveyId(surveyId);
         detail.setType(question.getType());
@@ -54,17 +55,32 @@ public class SurveyServiceImp implements SurveyService {
         detailDao.save(detail);
     }
 
-    @Override
-    public Boolean storeSurvey(VueSurvey survey) {
-        Survey storeSurvey = new Survey();
+    private Boolean isDetailExit(Long id) {
+        Detail res = detailDao.findById(id);
+        return res != null;
+    }
+
+    private Boolean isSurveyExit(Long id) {
+        SurveyEditBase res = surveyDao.findById(id);
+        return res != null;
+    }
+
+    private void createVueSurvey(Survey storeSurvey, VueSurvey survey) {
+        storeSurvey.setId(survey.getId());
         storeSurvey.setUserId(survey.getUserId());
         storeSurvey.setTitle(survey.getSurveyTitle());
         storeSurvey.setCount(0);
         storeSurvey.setInstruction(survey.getInstruction());
         storeSurvey.setDay(getDay());
         storeSurvey.setStatus(New);
-        System.out.println(survey);
+    }
+
+    @Override
+    public Boolean storeSurvey(VueSurvey survey) {
+        Survey storeSurvey = new Survey();
+        createVueSurvey(storeSurvey, survey);
         Survey res =  surveyDao.save(storeSurvey);
+        System.out.println(res);
         Long id = res.getId();
         System.out.println(id);
         for (VueQuestion question : survey.getForms())
@@ -72,7 +88,8 @@ public class SurveyServiceImp implements SurveyService {
         return true;
     }
 
-    private void createSurvey(VueSurvey survey, SurveyEditBase surveyInfo, List<Detail> details) {
+    private void createVueSurvey(VueSurvey survey, SurveyEditBase surveyInfo, List<Detail> details) {
+        survey.setId(surveyInfo.getId());
         survey.setUserId(surveyInfo.getUserId());
         survey.setSurveyTitle(surveyInfo.getTitle());
         survey.setInstruction(surveyInfo.getInstruction());
@@ -101,7 +118,8 @@ public class SurveyServiceImp implements SurveyService {
         List<Detail> details = detailDao.findBySurveyId(id);
 
         VueSurvey survey = new VueSurvey();
-        createSurvey(survey, surveyInfo, details);
+        createVueSurvey(survey, surveyInfo, details);
         return survey;
     }
+
 }

@@ -23,6 +23,7 @@ public class EditController {
     @ResponseBody
     public Result editPage(@RequestBody PostId surveyId) {
         VueSurvey survey = surveyService.getSurvey((long)surveyId.getId());
+        System.out.println(survey);
         return ResultFactory.buildSuccessResult(survey);
     }
 }
