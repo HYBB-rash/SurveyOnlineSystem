@@ -9,7 +9,7 @@
         <!-- 问卷的说明 -->
         <el-row><div>
           <el-card class="questionCard">
-            <el-input type="textarea" v-if="instructionSig"
+            <el-input type="textarea" v-if="instructionSig && flag"
                       :autosize="{ minRows: 5, maxRows: 10}"
                       placeholder="请输入问卷的说明信息" v-model="instruction">
             </el-input>
@@ -26,16 +26,14 @@
         <el-row><div class="grid-content"></div></el-row>
         <!-- 具体的问题渲染 -->
         <el-row>
-          <transition-group name="el-fade-in">
-            <question v-for="(form, idx) in forms"
-                      v-bind:dynamic-validate-form="form"
-                      :key="Date.now() + idx"
-                      class="questionCard"
-                      v-bind:flag="flag"></question>
+          <question v-for="(form, idx) in forms"
+                    v-bind:dynamic-validate-form="form"
+                    :key="Date.now() + idx"
+                    class="questionCard"
+                    v-bind:flag="flag"></question>
             <!--            <transition v-for="form in forms" :key="form.key" name="el-fade-in">-->
 <!--              <question v-bind:dynamic-validate-form="form" class="questionCard"></question>-->
 <!--            </transition>-->
-          </transition-group>
         </el-row>
         <!--      <el-button @click="demo(forms)">demo</el-button>-->
       </el-card>
@@ -50,7 +48,7 @@ import Question from './Question'
 export default {
   name: 'Survey',
   components: {Question},
-  props: ['surveyTitle', 'forms', 'flag'],
+  props: ['surveyTitle', 'forms', 'flag', 'instruction'],
   data () {
     return {
       // surveyTitle: this.$store.state.create.surveyTitle,
@@ -62,16 +60,6 @@ export default {
   methods: {
     trans () {
       this.instructionSig = !this.instructionSig
-    }
-  },
-  computed: {
-    instruction: {
-      get () {
-        return this.$store.state.create.instruction
-      },
-      set (value) {
-        this.$store.commit('refreshInstruction', value)
-      }
     }
   }
 }
