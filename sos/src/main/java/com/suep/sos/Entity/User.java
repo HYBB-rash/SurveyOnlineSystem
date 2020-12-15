@@ -19,12 +19,17 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", salt='" + salt + '\'' +
-                '}';
+        final StringBuilder builder = new StringBuilder("{");
+        builder.append("\"id\":")
+                .append(id);
+        builder.append(",\"username\":\"")
+                .append(username).append('\"');
+        builder.append(",\"password\":\"")
+                .append(password).append('\"');
+        builder.append(",\"salt\":\"")
+                .append(salt).append('\"');
+        builder.append('}');
+        return builder.toString();
     }
 
     public String getSalt() {

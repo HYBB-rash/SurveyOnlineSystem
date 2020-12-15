@@ -12,37 +12,43 @@ public class Detail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    Long id;
 
-    int surveyId;
+    Long surveyId;
     String question;
     int type;
     String choices;
 
     @Override
     public String toString() {
-        return "Detail{" +
-                "id=" + id +
-                ", surveyId=" + surveyId +
-                ", question='" + question + '\'' +
-                ", type=" + type +
-                ", choices='" + choices + '\'' +
-                '}';
+        final StringBuilder builder = new StringBuilder("{");
+        builder.append("\"id\":")
+                .append(id);
+        builder.append(",\"surveyId\":")
+                .append(surveyId);
+        builder.append(",\"question\":\"")
+                .append(question).append('\"');
+        builder.append(",\"type\":")
+                .append(type);
+        builder.append(",\"choices\":\"")
+                .append(choices).append('\"');
+        builder.append('}');
+        return builder.toString();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getSurveyId() {
+    public Long getSurveyId() {
         return surveyId;
     }
 
-    public void setSurveyId(int surveyId) {
+    public void setSurveyId(Long surveyId) {
         this.surveyId = surveyId;
     }
 

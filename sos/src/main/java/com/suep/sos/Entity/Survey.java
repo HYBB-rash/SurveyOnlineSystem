@@ -12,7 +12,7 @@ public class Survey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    int id;
+    Long id;
 
     @Column(name = "userid")
     int userId;
@@ -24,22 +24,30 @@ public class Survey {
 
     @Override
     public String toString() {
-        return "Survey{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", title='" + title + '\'' +
-                ", instruction='" + instruction + '\'' +
-                ", status=" + status +
-                ", day='" + day + '\'' +
-                ", count=" + count +
-                '}';
+        final StringBuilder builder = new StringBuilder("{");
+        builder.append("\"id\":")
+                .append(id);
+        builder.append(",\"userId\":")
+                .append(userId);
+        builder.append(",\"title\":\"")
+                .append(title).append('\"');
+        builder.append(",\"instruction\":\"")
+                .append(instruction).append('\"');
+        builder.append(",\"status\":")
+                .append(status);
+        builder.append(",\"day\":\"")
+                .append(day).append('\"');
+        builder.append(",\"count\":")
+                .append(count);
+        builder.append('}');
+        return builder.toString();
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
