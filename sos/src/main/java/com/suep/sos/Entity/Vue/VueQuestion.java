@@ -9,7 +9,8 @@ public class VueQuestion {
     private Integer type;
     private String context;
     private Integer ans;
-    private List<PostId> multi;
+    private List<Integer> multi;
+    private Integer rate;
     private Boolean flag;
     private List<Choice> choices;
 
@@ -28,12 +29,22 @@ public class VueQuestion {
                 .append(ans);
         builder.append(",\"multi\":")
                 .append(multi);
+        builder.append(",\"rate\":")
+                .append(rate);
         builder.append(",\"flag\":")
                 .append(flag);
         builder.append(",\"choices\":")
                 .append(choices);
         builder.append('}');
         return builder.toString();
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
     public Long getId() {
@@ -76,11 +87,11 @@ public class VueQuestion {
         this.ans = ans;
     }
 
-    public List<PostId> getMulti() {
+    public List<Integer> getMulti() {
         return multi;
     }
 
-    public void setMulti(List<PostId> multi) {
+    public void setMulti(List<Integer> multi) {
         this.multi = multi;
     }
 
