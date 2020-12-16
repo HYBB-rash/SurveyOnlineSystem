@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container style="height: 100%; border: 1px solid #eee">
+    <el-container style="height: 940px">
       <el-aside>
         <ans-left-menu></ans-left-menu>
       </el-aside>
@@ -32,6 +32,7 @@ export default {
             type: 'refreshAnsPage',
             forms: successResponse.data.result
           })
+          this.$store.state.answer.id = this.$route.params.id
         }
       })
   },

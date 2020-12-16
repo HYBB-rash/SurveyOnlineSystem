@@ -2,6 +2,7 @@
 export default {
   state: {
     id: null,
+    userId: null,
     surveyTitle: '',
     instruction: '',
     forms: [

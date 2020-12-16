@@ -3,7 +3,7 @@
     <el-aside style="margin-top: 20px">
       <left-menu @indexSelect='surveyIndex' ref="leftMenu"></left-menu>
     </el-aside>
-    <el-main>
+    <el-main style="margin-left: 5%">
       <el-row>
         <h3>问卷列表</h3>
       </el-row>

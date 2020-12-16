@@ -56,17 +56,19 @@ export default {
 </script>
 
 <style scoped>
-.choices {
-  position: fixed;
-  margin-left: 50%;
-  left: -650px;
-  top: 150px;
-  width: 250px;
-}
-.create-button {
-  position: fixed;
-  margin-left: 50%;
-  left: -650px;
-  width: 250px;
-}
+  .choices {
+    position: fixed;
+    /*margin-left: 35%;*/
+    /*left: -650px;*/
+    margin-left: 2%;
+    top: 150px;
+    width: 250px;
+  }
+  .create-button {
+    position: fixed;
+    /*margin-left: 35%;*/
+    /*left: -650px;*/
+    margin-left: 2%;
+    width: 250px;
+  }
 </style>

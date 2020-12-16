@@ -21,6 +21,20 @@ export default {
   name: 'AnsLeftMenu',
   methods: {
     handleSelect (key, keyPath) {
+      console.log(key)
+      if (Number(key) === 0) {
+        console.log(this.$store.state.answer.forms)
+        this.$axios
+          .post('/submit', {
+            ans: this.$store.state.answer
+          })
+          .then(successResponse => {
+            if (successResponse.data.code === 200) {
+              this.$message.success('成功提交问卷')
+              this.$router.replace({path: '/'})
+            }
+          })
+      }
       console.log()
     }
   }

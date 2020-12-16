@@ -85,8 +85,9 @@ export default {
 <style scoped>
 .choices {
   position: fixed;
-  margin-left: 50%;
-  left: -650px;
+  /*margin-left: 50%;*/
+  /*left: -650px;*/
+  margin-left: 2%;
   top: 100px;
   width: 250px;
 }
