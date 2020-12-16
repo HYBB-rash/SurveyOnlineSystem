@@ -5,7 +5,8 @@
     </el-aside>
     <el-main>
       <survey v-bind:survey-title="this.$store.state.create.surveyTitle"
-              v-bind:flag="true"
+              v-bind:EditFlag="true"
+              v-bind:type="true"
               v-bind:forms="this.$store.state.create.forms"></survey>
     </el-main>
   </el-container>
@@ -56,7 +57,11 @@ export default {
         return this.$store.state.create.instruction
       },
       set (value) {
-        this.$store.commit('refreshInstruction', value)
+        console.log(value)
+        this.$store.commit({
+          type: 'refreshInstruction',
+          value: value
+        })
       }
     }
   }

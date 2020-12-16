@@ -100,14 +100,14 @@ export default {
     },
     resetCreate (state) {
       state.id = null
-      state.surveyTitle = null
-      state.instruction = null
+      state.surveyTitle = ''
+      state.instruction = ''
       while (state.forms.length > 0) {
         state.forms.pop()
       }
     },
-    refreshInstruction (state, instruction) {
-      state.instruction = instruction
+    refreshInstruction (state, playLoad) {
+      state.instruction = playLoad.value
     }
   }
 }

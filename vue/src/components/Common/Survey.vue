@@ -9,12 +9,12 @@
         <!-- 问卷的说明 -->
         <el-row><div>
           <el-card class="questionCard">
-            <el-input type="textarea" v-if="instructionSig && flag"
+            <el-input type="textarea" v-if="EditFlag && instructionSig"
                       :autosize="{ minRows: 5, maxRows: 10}"
                       placeholder="请输入问卷的说明信息" v-model="instruction">
             </el-input>
             <small v-else>{{instruction}}</small>
-            <div v-if="flag" style="text-align: right; width: 90%; margin-top: 10px">
+            <div v-if="EditFlag" style="text-align: right; width: 90%; margin-top: 10px">
               <el-button>
                 <span v-if="instructionSig" @click="trans">确定</span>
                 <span v-else @click="trans">编辑</span>
@@ -30,7 +30,7 @@
                     v-bind:dynamic-validate-form="form"
                     :key="Date.now() + idx"
                     class="questionCard"
-                    v-bind:flag="flag"></question>
+                    v-bind:flag="EditFlag"></question>
             <!--            <transition v-for="form in forms" :key="form.key" name="el-fade-in">-->
 <!--              <question v-bind:dynamic-validate-form="form" class="questionCard"></question>-->
 <!--            </transition>-->
@@ -48,7 +48,7 @@ import Question from './Question'
 export default {
   name: 'Survey',
   components: {Question},
-  props: ['surveyTitle', 'forms', 'flag', 'instruction'],
+  props: ['surveyTitle', 'forms', 'EditFlag', 'type'],
   data () {
     return {
       // surveyTitle: this.$store.state.create.surveyTitle,
@@ -60,6 +60,30 @@ export default {
   methods: {
     trans () {
       this.instructionSig = !this.instructionSig
+    }
+  },
+  computed: {
+    instruction: {
+      get () {
+        if (this.$props.type) {
+          return this.$store.state.create.instruction
+        } else {
+          return this.$store.state.answer.instruction
+        }
+      },
+      set (value) {
+        if (this.$props.type) {
+          this.$store.commit({
+            type: 'refreshInstruction',
+            value: value
+          })
+        } else {
+          this.$store.commit({
+            type: 'refreshAnsInstruction',
+            value: value
+          })
+        }
+      }
     }
   }
 }

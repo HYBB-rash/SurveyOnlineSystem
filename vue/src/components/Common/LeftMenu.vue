@@ -35,12 +35,14 @@ export default {
     handleSelect (key, keyPath) {
     },
     open () {
+      this.$store.commit({
+        type: 'resetCreate'
+      })
       this.$prompt('请输入问卷标题', '创建问卷', {
         confirmButtonText: '确定',
         cancelButtonText: '取消'
       }).then(({ value }) => {
         this.$store.state.create.surveyTitle = value
-        console.log(this.$store.state.create.surveyTitle)
         this.$router.replace({path: '/create'})
       }).catch(() => {
         this.$message({

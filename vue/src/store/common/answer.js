@@ -2,8 +2,8 @@
 export default {
   state: {
     id: null,
-    surveyTitle: null,
-    instruction: null,
+    surveyTitle: '',
+    instruction: '',
     forms: [
       {
         id: 1607659615766,
@@ -77,8 +77,8 @@ export default {
         state.forms.push(playLoad.forms.forms[i])
       }
     },
-    refreshAnsInstruction (state, instruction) {
-      state.instruction = instruction
+    refreshAnsInstruction (state, playLoad) {
+      state.instruction = playLoad.value
     }
   }
 }
