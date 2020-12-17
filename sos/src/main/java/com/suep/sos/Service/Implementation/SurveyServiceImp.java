@@ -65,11 +65,17 @@ public class SurveyServiceImp implements SurveyService {
         return res != null;
     }
 
+    private Boolean isSurveyExit(long id) {
+        return surveyDao.findById(id) != null;
+    }
+
     private void createVueSurvey(Survey storeSurvey, VueSurvey survey) {
         storeSurvey.setId(survey.getId());
         storeSurvey.setUserId(survey.getUserId());
+        if (isSurveyExit(survey.getId()))
+            storeSurvey.setCount(surveyDao.getById(survey.getId()).getCount());
+        else storeSurvey.setCount(0);
         storeSurvey.setTitle(survey.getSurveyTitle());
-        storeSurvey.setCount(0);
         storeSurvey.setInstruction(survey.getInstruction());
         storeSurvey.setDay(getDay());
         storeSurvey.setStatus(New);
