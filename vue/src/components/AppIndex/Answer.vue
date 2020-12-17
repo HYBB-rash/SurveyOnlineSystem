@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container style="height: 940px">
+    <el-container ref="homePage">
       <el-aside>
         <ans-left-menu></ans-left-menu>
       </el-aside>
@@ -20,6 +20,11 @@ import Survey from '../Common/Survey'
 import AnsLeftMenu from '../Common/AnsLeftMenu'
 export default {
   name: 'Answer',
+  data () {
+    return {
+      clientHeight: ''
+    }
+  },
   components: {Survey, AnsLeftMenu},
   created () {
     this.$axios
@@ -36,9 +41,23 @@ export default {
         }
       })
   },
+  mounted () {
+    this.clientHeight = `${document.documentElement.clientHeight}`
+    window.onresize = function () {
+      this.clientHeight = `${document.documentElement.clientHeight}`
+    }
+  },
+  watch: {
+    clientHeight: function () {
+      this.changeFixed(this.clientHeight)
+    }
+  },
   methods: {
     handleSelect (key, keyPath) {
       console.log()
+    },
+    changeFixed (clientHeight) {
+      this.$refs.homePage.$el.style.height = clientHeight - 20 + 'px'
     }
   }
 }
