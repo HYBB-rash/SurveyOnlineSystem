@@ -13,4 +13,6 @@ public interface SurveyService {
     List<SurveyInfo> getAllSurvey(Integer id);
     Boolean storeSurvey(VueSurvey survey);
     VueSurvey getSurvey(Long id);
+
+    Boolean updateStopStatus(Long id);
 }

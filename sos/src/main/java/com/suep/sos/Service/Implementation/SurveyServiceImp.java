@@ -122,4 +122,10 @@ public class SurveyServiceImp implements SurveyService {
         return survey;
     }
 
+    @Override
+    public Boolean updateStopStatus(Long id) {
+        Integer res = surveyDao.updateStatus(End, id);
+        return res == 1;
+    }
+
 }

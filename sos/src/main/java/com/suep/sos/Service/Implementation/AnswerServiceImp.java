@@ -2,6 +2,7 @@ package com.suep.sos.Service.Implementation;
 
 import com.alibaba.fastjson.JSON;
 import com.suep.sos.Dao.AnswerDao;
+import com.suep.sos.Dao.SurveyDao;
 import com.suep.sos.Entity.Answer;
 import com.suep.sos.Entity.Vue.VueQuestion;
 import com.suep.sos.Entity.Vue.VueSurvey;
@@ -17,6 +18,8 @@ public class AnswerServiceImp implements AnswerService {
 
     @Autowired
     AnswerDao answerDao;
+    @Autowired
+    SurveyDao surveyDao;
 
     private List<Answer> loadAnswer(VueSurvey answer) {
         List<Answer> answers = new LinkedList<>();
@@ -45,6 +48,9 @@ public class AnswerServiceImp implements AnswerService {
     public Boolean saveAnswer(VueSurvey answer) {
         List<Answer> answers = loadAnswer(answer);
         answerDao.saveAll(answers);
-        return null;
+        Long surveyId = answer.getId();
+        Integer res = surveyDao.updateCount(surveyId);
+        System.out.println(res);
+        return res == 1;
     }
 }

@@ -28,4 +28,12 @@ public class IndexController {
         return ResultFactory.buildSuccessResult(surveys);
     }
 
+    @CrossOrigin
+    @PostMapping(value = "/api/stop")
+    @ResponseBody
+    public Result stopSurvey(@RequestBody PostId id) {
+        System.out.println(id.getId());
+        Boolean res = surveyService.updateStopStatus((long)id.getId());
+        return res ? ResultFactory.buildSuccessResult(res) : ResultFactory.buildFailResult("refresh fail");
+    }
 }
