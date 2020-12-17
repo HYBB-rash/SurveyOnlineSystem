@@ -18,14 +18,14 @@ export default new Router({
       name: 'Home',
       component: Home,
       redirect: ['/index'],
-      meta: {
-        requireAuth: true
-      },
       children: [
         {
           path: '/index',
           name: 'Index',
-          component: Index
+          component: Index,
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/create',

@@ -20,8 +20,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         uri = StringUtils.remove(uri, contextPath + "/");
         String page = uri;
         if (begingWith(page, requireAuthPages)) {
-            User user = (User) session.getAttribute("user");
-            if (user == null) {
+            Integer id = (Integer) session.getAttribute("user");
+            if (id == null) {
                 response.sendRedirect("login");
                 return false;
             }

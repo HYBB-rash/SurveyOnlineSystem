@@ -1,5 +1,5 @@
 <template>
-  <boby id="paper">
+  <body id="paper">
     <el-form class="login-container" label-width="0px"
              status-icon :rules="rules"
              label-position="left" :model="loginForm">
@@ -20,7 +20,7 @@
         <el-button type="warning" class="login_button" v-on:click="register">注册</el-button>
       </el-form-item>
     </el-form>
-  </boby>
+  </body>
 </template>
 
 <script>
@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     login () {
+      var _this = this
       this.$axios
         .post('/login', {
           username: this.loginForm.username,
@@ -59,16 +60,18 @@ export default {
         })
         .then(successResponse => {
           if (successResponse.data.code === 200) {
-            this.$store.commit({
+            _this.$store.commit({
               type: 'login',
-              user: this.loginForm
+              userToken: this.loginForm
             })
-            this.$store.commit({
+            _this.$store.commit({
               type: 'setStatus',
               id: Number(successResponse.data.result)
             })
             const path = this.$route.query.redirect
-            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+            console.log(path)
+            console.log({path: path === '/index' || path === undefined ? '/index' : path})
+            this.$router.replace({path: path === '/index' || path === undefined ? '/index' : path})
           }
         })
         .catch(failResponse => {

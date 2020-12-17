@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class LoginController {
@@ -26,13 +28,15 @@ public class LoginController {
     @CrossOrigin
     @PostMapping(value = "/api/login")
     @ResponseBody
-    public Result login(@RequestBody User requestUser) {
+    public Result login(@RequestBody User requestUser, HttpSession session) {
         String username = requestUser.getUsername();
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, requestUser.getPassword());
         try {
             subject.login(usernamePasswordToken);
             int id = userService.getUserId(requestUser.getUsername());
+            session.setAttribute("user", id);
+            System.out.println(id);
             return ResultFactory.buildSuccessResult(id);
         }catch (AuthenticationException e) {
             String message = "账号密码错误";
