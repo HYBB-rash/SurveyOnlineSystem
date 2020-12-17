@@ -17,7 +17,10 @@ export default new Router({
       path: '/home',
       name: 'Home',
       component: Home,
-      redirect: '/index',
+      redirect: ['/index'],
+      meta: {
+        requireAuth: true
+      },
       children: [
         {
           path: '/index',

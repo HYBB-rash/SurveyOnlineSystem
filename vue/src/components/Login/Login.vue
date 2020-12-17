@@ -60,11 +60,15 @@ export default {
         .then(successResponse => {
           if (successResponse.data.code === 200) {
             this.$store.commit({
+              type: 'login',
+              user: this.loginForm
+            })
+            this.$store.commit({
               type: 'setStatus',
               id: Number(successResponse.data.result)
             })
-            console.log(this.$store.state.user.id)
-            this.$router.replace({path: '/index'})
+            const path = this.$route.query.redirect
+            this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
           }
         })
         .catch(failResponse => {
