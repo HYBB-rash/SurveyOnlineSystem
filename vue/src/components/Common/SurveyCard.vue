@@ -43,26 +43,30 @@
         <!-- 功能按钮 -->
         <el-row>
           <!-- 开头的一段距离间隔 -->
-          <el-col :span="12"><div class="grid-content"></div></el-col>
+          <el-col :span="8"><div class="grid-content"></div></el-col>
           <!-- 编辑按钮 -->
-          <el-col :span="3"><div class="toRight">
+          <el-col :span="4"><div class="toRight">
             <el-button style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)"
                        @click="edit(card.id)">
               <i class="el-icon-edit" style="color: #67C23A"></i>编辑问卷</el-button>
           </div></el-col>
           <!-- 发送问卷按钮 -->
-          <el-col :span="3"><div class="toRight">
-            <el-button style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)">
+          <el-col :span="4"><div class="toRight">
+            <el-button
+              @click="getAddress"
+              style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)">
               <i class="el-icon-document" style="color: #409EFF"></i>发送问卷</el-button>
           </div></el-col>
           <!-- 分析与下载按钮-->
-          <el-col :span="3"><div class="toRight">
+          <el-col :span="4"><div class="toRight">
             <el-button style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)">
-              <i class="el-icon-cpu" style="color: #E6A23C"></i>分析&下载</el-button>
+              <i class="el-icon-cpu"
+                 style="color: #E6A23C"></i>分析&下载</el-button>
           </div></el-col>
           <!-- 停止问卷按钮 -->
-          <el-col :span="3"><div class="toRight">
-            <el-button style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)">
+          <el-col :span="4"><div class="toRight">
+            <el-button @click="stopSurvey(card.id)"
+              style="box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.1)">
               <i class="el-icon-circle-close" style="color: #F56C6C"></i>停止问卷</el-button>
           </div></el-col>
         </el-row>
@@ -94,6 +98,34 @@ export default {
           })
         })
       this.$router.replace({path: '/create'})
+    },
+    getAddress () {
+      const address = this.$store.state.user.address + this.$props.card.id
+      console.log(address)
+      this.$alert(address, '请复制下面的地址发送给填写问卷的用户', {
+        confirmButtonText: '收到，已经复制'
+      })
+    },
+    stopSurvey (id) {
+      this.$axios
+        .post('/stop', {
+          id: id
+        })
+        .then(successResponse => {
+          if (successResponse.data.code === 200) {
+            this.$axios.post('/survey', {id: this.$store.state.user.id})
+              .then(successResponse => {
+                if (successResponse.data.code === 200) {
+                  this.$store.commit({
+                    type: 'pushSurveyMessage',
+                    result: successResponse.data.result
+                  })
+                }
+              })
+          } else {
+            this.$message.error('状态更新失败')
+          }
+        })
     }
   }
 }

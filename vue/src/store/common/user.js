@@ -1,6 +1,7 @@
 export default {
   state: {
-    id: null
+    id: null,
+    address: 'http://localhost:8080/ans/'
   },
   mutations: {
     resetStatus (state) {
